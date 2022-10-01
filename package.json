@@ -2,7 +2,29 @@
   "dependencies": {
     "express": "^4.18.1",
     "joi": "^13.1.0",
-    "mongoose": "^6.6.2",
+    "mongodb": "^4.10.0",
+    "mongoose": "^5.13.15",
+    "nodemon": "^2.0.20",
     "underscore": "^1.13.6"
-  }
+  },
+  "name": "bookly",
+  "description": "A book sharing application where you can share books with your friends and write your book",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hughmancoder/Bookly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hughmancoder/Bookly/issues"
+  },
+  "homepage": "https://github.com/hughmancoder/Bookly#readme"
 }
