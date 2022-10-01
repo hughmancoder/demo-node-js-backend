@@ -1,33 +1,35 @@
 const express = require("express");
 const router = express.Router();
-const { Customer, validate } = require('../models/customer');
+const { Book, validate } = require('../models/boooks');
+const { Genre } = require('../models/genre');
 
 // get requests
 router.get('/', async(req, res) => {
-    const customers = await Customer.find().sort('name');
+    const customers = await Book.find().sort('name');
     res.send(customers);
 })
 
 router.get('/:id', async(req, res) => {
-    const customer = await Customer.find(req.params.id);
-    if (!customer) return res.status(404).send(`${req.params.id} is not found`);
-    res.send(customer);
+    const book = await Book.find(req.params.id);
+    if (!book) return res.status(404).send(`${req.params.id} is not found`);
+    res.send(book);
 })
 
+// fix these functions with refactored code
 // update material
-router.put('/:id', async(req, res) => {
+/* router.put('/:id', async(req, res) => {
     const { error } = validate(req.body);
     // bad response status code (client format error)
     if (error) return res.stus(400).send(error.deatails[0].message);
 
-    const customer = await Customer.findByIdAndUpdate(req.params.id, {
+    const book = await Book.findByIdAndUpdate(req.params.id, {
         name: req.body, 
         phone: req.body.phone,
         isGold: req.body.isGold
     }, {new: true});
 
-    if (!customer) return res.status(404).send('customer with given id is not found and cannot be updated');
-    res.send(customer);
+    if (!book) return res.status(404).send('book with given id is not found and cannot be updated');
+    res.send(book);
 });
 
 // post request (post new material)
@@ -35,8 +37,8 @@ router.post('/', async(req, res) => {
     const { error } = validate(req.body);
     if (error) return res.stus(400).send(error.deatails[0].message);
 
-    // create new customer object
-    let customer = new Customer({
+    // create new book object
+    let book = new Book({
         name: req.body.name,
         phone: req.body.phone,
         isGold: req.body.isGold
@@ -45,14 +47,14 @@ router.post('/', async(req, res) => {
         new: true
     });
     // save object to mongoose database
-    customer  = await customer.save();
-    res.send(customer);
+    book  = await book.save();
+    res.send(book);
 });
 
 router.delete('/:id', async(req, res) => {
-    const deleted_customer = await customer.findByIdAndRemove(req.params.id);
-    if (!deleted_customer) return res.status(404).send('customer with given id is not found and cannot be updated');
-    res.send(deleted_customer);
-})
+    const deleted_book = await book.findByIdAndRemove(req.params.id);
+    if (!deleted_book) return res.status(404).send('book with given id is not found and cannot be updated');
+    res.send(deleted_book);
+}) */
 
 module.exports = router;
