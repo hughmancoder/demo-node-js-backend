@@ -1,19 +1,34 @@
-// entry point to program
+// == entry point to program == 
+const Joi = require('joi') // used to validate customer id
+Joi.objectId = require('joi-objectid')(Joi);
 const express = require("express");
 const genres = require("./routes/genres");
-const customers = require("./routes/customers")
+const customers = require("./routes/customers");
+const books = require("./routes/books");
+const users = require("./routes/users");
+const borrows = require("./routes/borrows");
 const app = express(); // express object
 const mongoose = require("mongoose");
+const auth = require('./routes/auth');
+const config = require('config'); // make sure environment variable is set
 
-
+if (!config.get('jwtPrivateKey')) {
+    console.log('jwtPrivateKey is not defined');
+    process.exit(1);
+}
 mongoose.connect('mongodb://localhost/bookly')
 .then(() => console.log('Connected to mongodb'))
 .catch(err => console.error('Can\'t connect to mongo db'));
 
-
-app.use(express.json()); // middleware
-app.use("/api/genres", genres); // use genre router for listed path
-app.use("/api/customers", customers); // use customer router for listed path
+// middleware
+app.use(express.json()); 
+// use listed router for given path
+app.use("/api/genres", genres); 
+app.use("/api/customers", customers); 
+app.use("/api/borrows", borrows); 
+app.use("/api/books", books); 
+app.use("/api/users", users); 
+app.use("/api/auth", auth); 
 
 // declaring port
 const port = process.env.PORT || 3000;

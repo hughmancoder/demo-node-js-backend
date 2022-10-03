@@ -2,7 +2,7 @@ const Joi = require("joi"); // input validation
 const mongoose = require("mongoose");
 
 // defining db schema
-const bookSchema = new mongoose.Schema({
+const genreSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -12,7 +12,7 @@ const bookSchema = new mongoose.Schema({
 });
 
 // converting schema to Genre class
-const Genre = mongoose.model("Genre", bookSchema);
+const Genre = mongoose.model("Genre", genreSchema);
 
 // helper function which takes in request body and uses Joi module to validate
 function validateGenre(genre) {
@@ -23,4 +23,5 @@ function validateGenre(genre) {
 }
 
 exports.Genre = Genre;
+exports.genreSchema = genreSchema;
 exports.validate = validateGenre;

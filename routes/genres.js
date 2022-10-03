@@ -18,6 +18,7 @@ router.put("/:id", async (req, res) => {
   console.log("put request called for id ", req.params.id);
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
+  // can wrap req.body in try block to test if format is correct
   const genre = await Genre.findByIdAndUpdate(
     req.params.id,
     {

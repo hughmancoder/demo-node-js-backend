@@ -22,7 +22,7 @@ numberAvail: {
 },
 averageRating: { 
 type: Number, 
-required: False,
+required: false,
 min: 0,
 max: 5
 }
@@ -32,7 +32,7 @@ max: 5
 function validateBook(bookObj) {
     const schema = {
         title: Joi.string().min(5).max(255).required(),
-        genreId: Joi.string().required(),
+        genreId: Joi.objectId().required(),
         numberAvail: Joi.number().min(0).max(999).required(),
         averageRating: Joi.number().min(0).required()
     };

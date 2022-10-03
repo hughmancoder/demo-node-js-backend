@@ -2,6 +2,9 @@
 A book sharing application where you can share books with your friends and write your book 
 
 ### Features
+- for every book you place on the libarary you gain a borrowing token
+- system based on trust (used book sharing)
+- supply and demand currency calibration, users get tokens for selling book valued on the basis of demand
 
 ### To-Do
 - [x] add customer api
