@@ -8,6 +8,7 @@
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^8.1.1",
     "lodash": "^4.17.4",
+    "mongod": "^2.0.0",
     "mongodb": "^4.10.0",
     "mongoose": "^5.13.15",
     "nodemon": "^2.0.20",

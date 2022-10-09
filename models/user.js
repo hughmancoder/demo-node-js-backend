@@ -1,8 +1,8 @@
 // sign in model
-// const config = require("config");
-// const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const mongoose = require("mongoose");
+const jwt = require('jsonwebtoken');
+const config = require('config'); // make sure environment variable is set
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -27,15 +27,17 @@ const userSchema = new mongoose.Schema({
   isAdmin: Boolean,
 });
 
-// userSchema.methods.generateAuthToken = function() {
-//     const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
-//     return token;
-// }
+// add a new method to user object
+userSchema.methods.generateAuthToken = function() {
+  const private_key = config.get('jwtPrivateKey');
+  // generates our token
+  return jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, private_key);
+}
 
 const User = mongoose.model('User', userSchema);
 
 function validateUser(user) {
-    const schema = {
+    const schema = { 
         name: Joi.string().min(5).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),  // make sure valid email
         password: Joi.string().min(5).max(255).required(),

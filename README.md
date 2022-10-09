@@ -8,9 +8,14 @@ A book sharing application where you can share books with your friends and write
 
 ### To-Do
 - [x] add customer api
+- [ ] add auth middleware to protect api only where we modify data
 
 ### Developer notes
 - put request invalid datat types causing errors add try and accept to part where we enter data and try additional validation if needed
+- bad practice to store authentication tokens on db  as we want to protect api endpoints
+- if you do decide to store it in db, make sure to encrypt (such as hasing it)
+- store on client not server
+- use https for secure encrypted client-server transactions
 
 ### Depreciated warnings for updating code base
  (node:56526) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future  version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.

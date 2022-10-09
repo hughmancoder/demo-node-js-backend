@@ -1,3 +1,5 @@
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const express = require("express");
 const router = express.Router();
 const { validate, Genre } = require('../models/genre');
@@ -33,8 +35,8 @@ router.put("/:id", async (req, res) => {
   res.send(genre);
 });
 
-// adds a new resource to the request`
-router.post("/", async (req, res) => {
+// adds a new resource to the request; we add auth as an optional middleware function; we add auth as we want to ensure protection of post request
+router.post("/", auth, async (req, res) => {
   console.log(req.body);
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -44,7 +46,9 @@ router.post("/", async (req, res) => {
   res.send(genre);
 });
 
-router.delete("/:id", async (req, res) => {
+// use auth and admin middleware functions
+router.delete("/:id", [auth, admin], async (req, res) => {
+  console.log("deleting user with id: " + req.params.id);
   const genre = await Genre.findByIdAndRemove(req.params.id);
   if (!genre)
     return res.status(404).send("The genre with the given ID was not found.");

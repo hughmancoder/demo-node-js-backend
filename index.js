@@ -13,9 +13,10 @@ const auth = require('./routes/auth');
 const config = require('config'); // make sure environment variable is set
 
 if (!config.get('jwtPrivateKey')) {
-    console.log('jwtPrivateKey is not defined');
+    console.log('jwtPrivateKey is not defined set private key via: export bookly_jwtPrivateKey=mySecureKey');
     process.exit(1);
 }
+
 mongoose.connect('mongodb://localhost/bookly')
 .then(() => console.log('Connected to mongodb'))
 .catch(err => console.error('Can\'t connect to mongo db'));
@@ -30,7 +31,10 @@ app.use("/api/books", books);
 app.use("/api/users", users); 
 app.use("/api/auth", auth); 
 
+
+const private_key = config.get('jwtPrivateKey');
+console.log('private key is ' + private_key)
+
 // declaring port
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
-
