@@ -1,10 +1,11 @@
-const auth = require('../middleware/auth');
-const admin = require('../middleware/admin');
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 const express = require("express");
 const router = express.Router();
-const { validate, Genre } = require('../models/genre');
+const { validate, Genre } = require("../models/genre");
 
 router.get("/", async (req, res) => {
+  throw new Error('Could not get genres');
   const book_genres = await Genre.find().sort("name");
   res.send(book_genres);
 });
@@ -31,7 +32,8 @@ router.put("/:id", async (req, res) => {
     }
   );
 
-  if (!genre) return res.status(404).send(`error ${req.params.id} does not exist`);
+  if (!genre)
+    return res.status(404).send(`error ${req.params.id} does not exist`);
   res.send(genre);
 });
 
@@ -52,7 +54,7 @@ router.delete("/:id", [auth, admin], async (req, res) => {
   const genre = await Genre.findByIdAndRemove(req.params.id);
   if (!genre)
     return res.status(404).send("The genre with the given ID was not found.");
-  console.log(`deleted ${genre}`)
+  console.log(`deleted ${genre}`);
   res.send(genre);
 });
 
