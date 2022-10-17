@@ -6,6 +6,10 @@ A book sharing application where you can share books with your friends and write
 - system based on trust (used book sharing)
 - supply and demand currency calibration, users get tokens for selling book valued on the basis of demand
 
+### setup
+- brew services start mongodb-community@6.0
+- export bookly_private_env = "varname"
+
 ### To-Do
 - [x] add customer api
 - [ ] add auth middleware to protect api only where we modify data
