@@ -25,7 +25,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll --verbose"
   },
   "repository": {
     "type": "git",
@@ -37,5 +37,9 @@
   "bugs": {
     "url": "https://github.com/hughmancoder/Bookly/issues"
   },
-  "homepage": "https://github.com/hughmancoder/Bookly#readme"
+  "homepage": "https://github.com/hughmancoder/Bookly#readme",
+  "devDependencies": {
+    "jest": "^29.2.2",
+    "supertest": "^6.3.1"
+  }
 }
