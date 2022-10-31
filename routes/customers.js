@@ -5,8 +5,9 @@ const { Customer, validate } = require('../models/customer');
 // get requests
 router.get('/', async(req, res) => {
     const customers = await Customer.find().sort('name');
+    console.log("getting customers")
     res.send(customers);
-})
+});
 
 router.get('/:id', async(req, res) => {
     const customer = await Customer.find(req.params.id);
@@ -18,7 +19,7 @@ router.get('/:id', async(req, res) => {
 router.put('/:id', async(req, res) => {
     const { error } = validate(req.body);
     // bad response status code (client format error)
-    if (error) return res.stus(400).send(error.deatails[0].message);
+    if (error) return res.status(400).send(error.deatails[0].message);
 
     const customer = await Customer.findByIdAndUpdate(req.params.id, {
         name: req.body, 

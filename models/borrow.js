@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Borrow = mongoose.model(
   "Borrow",
   new mongoose.Schema({
-    customer: {
+    customer: {  
       type: new mongoose.Schema({
         name: {
           type: String,

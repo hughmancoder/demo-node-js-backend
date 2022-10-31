@@ -6,6 +6,12 @@ const express = require("express");
 const router = express.Router();
 const { validate, User } = require('../models/user');
 
+router.get('/', async (req, res) => {
+  // we want to exclude password 
+  const users = await Customer.find().sort('name');
+  res.send(users);
+});
+
 // get current user from json web token; protected authentication middleware ensures valid token
 router.get('/me',auth, async (req, res) => {
   // we want to exclude password 
