@@ -1,3 +1,10 @@
+# Node js Backend
+
+### Made with
+- Mongo db
+- Node
+- Lodash
+
 ### Bookly
 A book sharing application where you can share books with your friends and write your book 
 
