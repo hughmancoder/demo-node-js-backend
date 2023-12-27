@@ -29,11 +29,6 @@ A book sharing application where you can share books with your friends and write
 - use https for secure encrypted client-server transactions
 - export bookly_jwtPrivateKey="mySecureKey"
 
-### Deployment
-https://ancient-taiga-70775.herokuapp.com/
-git push heroku main
-heroku logs
-
 ### env variable used
 heroku config:set bookly_jwtPrivateKey=1234
 change node env: 
